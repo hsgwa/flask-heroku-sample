@@ -14,11 +14,9 @@ db = SQLAlchemy(app)
 class User(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(100))
-  email = db.Column(db.String(100))
 
-  def __init__(self, name, email):
+  def __init__(self, name):
     self.name = name
-    self.email = email
 
 
 @app.route('/', methods=['GET'])
@@ -28,7 +26,7 @@ def index():
 
 @app.route('/user', methods=['POST'])
 def user():
-  u = User(request.form['name'], request.form['email'])
+  u = User(request.form['name'])
   db.session.add(u)
   db.session.commit()
   return redirect(url_for('index'))

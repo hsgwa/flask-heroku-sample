@@ -5,13 +5,11 @@
   <form action="{{ url_for('user') }}" method="post">
     <label for="name">Name</label>
     <input id="name" type="text" name="name" placeholder="John Smith" required />
-    <label for="email">Email</label>
-    <input id="email" type="email" name="email" placeholder="j.smith@example.com" required />
     <button type="submit">Save</button>
   </form>
   <h2>List of users</h2>
   {% for u in users %}
-    <p>{{ u.name }} -- {{ u.email }}</p>
+    <p>{{ u.name }}</p>
   {% else %}
     <p>No users found in the db. You can make some above.</p>
   {% endfor %}
