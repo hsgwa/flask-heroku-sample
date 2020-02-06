@@ -23,13 +23,24 @@ class User(db.Model):
 def index():
   return render_template('index.html', users=User.query.all())
 
+@app.route('/result/<username>', methods=['GET'])
+def result(username):
+  users=User.query.all()
+  usernames = [user.name for user in users]
+  registered = username in usernames
+
+  u = User(username)
+  db.session.add(u)
+  db.session.commit()
+
+  return render_template('index.html', users=User.query.all(), registered=registered)
 
 @app.route('/user', methods=['POST'])
 def user():
-  u = User(request.form['name'])
-  db.session.add(u)
-  db.session.commit()
-  return redirect(url_for('index'))
+  username = request.form['name']
+  return redirect(url_for('result', username=username))
+  # # return redirect(url_for('index'))
+  # return redirect(url_for('index'))
 
 if __name__ == '__main__':
   db.create_all()

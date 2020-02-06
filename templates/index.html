@@ -7,7 +7,14 @@
     <input id="name" type="text" name="name" placeholder="John Smith" required />
     <button type="submit">Save</button>
   </form>
-  <h2>List of users</h2>
+  {% if registered == true%}
+  <p>登録されています</p>
+  {% else %}
+  <p>初めての登録です。</p>
+  {% endif %}
+
+  <h2>ユーザー一覧</h2>
+
   {% for u in users %}
     <p>{{ u.name }}</p>
   {% else %}
