@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  {% if registered == true%}
+  <p>登録されています</p>
+  {% else %}
+  <p>初めての登録です。</p>
+  {% endif %}
+
+  <h2>ユーザー一覧</h2>
+
+  {% for u in users %}
+  <p>お名前：{{ u.name }} - 招待：{{ u.reserve_name }}</p>
+  {% else %}
+    <p>No users found in the db. You can make some above.</p>
+  {% endfor %}
+{% endblock %}
