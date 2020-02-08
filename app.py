@@ -28,16 +28,17 @@ def index():
 @app.route('/result/<username>', methods=['GET'])
 def result(username):
    user = User.query.filter(User.name == username).all()
+   print(user)
    registered = len(user) > 0
-   reserve_name = ''
+
    if registered:
-     reserve_name = user[0].reserve_name
+     user = user[0]
    else:
-    u = User(username, 'ジョイ')
-    db.session.add(u)
+    user = User(username, 'ジョイ')
+    db.session.add(user)
     db.session.commit()
 
-   return render_template('result.html', users=User.query.all(), registered=registered, reserve_name=reserve_name)
+   return render_template('result.html', users=User.query.all(), registered=registered, user=user)
 
 @app.route('/user', methods=['POST'])
 def user():

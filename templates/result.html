@@ -1,16 +1,18 @@
 {% extends "layout.html" %}
 
 {% block body %}
+  <h1>事前予約状況</h1>
   {% if registered == true%}
-  <p>登録されています</p>
-  <img src="../static/imgs/ojigi_animal_kuma.png" />
-  {% else %}
-  <p>初めての登録です。</p>
   <img src="../static/imgs/eto_saru_happy.png" />
+  <p>おなまえ<strong>{{ user.name }}</strong>さん<br />
+      ご予約<strong>{{ user.reserve_name }}</strong>さんのご招待で予約登録済みです</p>
+  {% else %}
+  <p>登録されていませんでした</p>
+  <img src="../static/imgs/ojigi_animal_kuma.png" />
+  <p>お名前：{{ user.name }} - 招待：{{ user.reserve_name }}</p>
   {% endif %}
 
-  <h2>ユーザー一覧</h2>
-
+  <h2>登録されている人一覧</h2>
   {% for u in users %}
   <p>お名前：{{ u.name }} - 招待：{{ u.reserve_name }}</p>
   {% else %}

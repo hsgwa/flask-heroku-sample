@@ -1,10 +1,9 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <h1>Add a user</h1>
+  <h1>Re:JOY-TAN&CON　事前予約確認</h1>
   <form action="{{ url_for('user') }}" method="post">
-    <label for="name">Name</label>
-    <input id="name" type="text" name="name" placeholder="John Smith" required />
-    <button type="submit">Save</button>
+    <input id="name" type="text" name="name" placeholder="おなまえ　いれてね" required />
+    <button type="submit">確認</button>
   </form>
 {% endblock %}
