@@ -14,6 +14,10 @@ python-dotenv = "*"
 requests = "*"
 autopep8 = "*"
 pycodestyle = "*"
+google-api-python-client = "*"
+google-auth-httplib2 = "*"
+google-auth-oauthlib = "*"
+json = "*"
 
 [requires]
 python_version = "3.6"

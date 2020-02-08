@@ -1,27 +1,41 @@
+from google.oauth2 import service_account
+import json
 import os
 import requests
+import googleapiclient.discovery
 from dotenv import load_dotenv
 load_dotenv(override=True)
 
-ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
-SPREADSHEET_ID = os.environ['SPREADSHEET_ID']
-COLUMN_RANGE = os.environ['COLUMN_RANGE']
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
-headers = {'Authorization': 'Bearer ' + ACCESS_TOKEN}
-api_uri = 'https://sheets.googleapis.com/v4/spreadsheets/'
-uri = api_uri + SPREADSHEET_ID + '/values/' + COLUMN_RANGE
+service_account_info = {
+    "type": os.environ['TYPE'],
+    "project_id": os.environ['PROJECT_ID'],
+    "private_key_id": os.environ['PRIVATE_KEY_ID'],
+    "private_key": os.environ['PRIVATE_KEY'],
+    "client_email": os.environ['CLIENT_EMAIL'],
+    "client_id": os.environ['CLIENT_ID'],
+    "auth_uri": os.environ['AUTH_URI'],
+    "token_uri": os.environ['TOKEN_URI'],
+    "auth_provider_x509_cert_url": os.environ['AUTH_PROVIDER_X509_CERT_URL'],
+    "client_x509_cert_url": os.environ['CLIENT_X509_CERT_URL'],
+}
 
+credentials = service_account.Credentials.from_service_account_info(
+        service_account_info, scopes=SCOPES)
+
+service = googleapiclient.discovery.build('sheets', 'v4', credentials=credentials)
+spreadsheet_id = os.environ['SPREADSHEET_ID']
+range_names = [
+    os.environ['RANGE']
+]
 
 def get_list():
-    response = requests.get(uri, headers=headers)
-    data = response.json()
-    if response.status_code == 200:
-        return data['values']
-    else:
-        print('failed to get spread sheet data.')
-        print(response.text)
-        return
-
+    result = service.spreadsheets().values().batchGet(
+        spreadsheetId=spreadsheet_id, ranges=range_names).execute()
+    ranges = result.get('valueRanges', [])
+    return ranges[0]['values']
 
 if __name__ == '__main__':
     print(get_list())
+
