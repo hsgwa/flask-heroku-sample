@@ -12,6 +12,8 @@ flask-sqlalchemy = "*"
 gunicorn = "*"
 python-dotenv = "*"
 requests = "*"
+autopep8 = "*"
+pycodestyle = "*"
 
 [requires]
 python_version = "3.6"
