@@ -33,6 +33,21 @@ Python 3.6.8 (default, Jan 29 2019, 19:35:16)
 >>> db.create_all()
 >>> exit()
 ```
+## dot env
+sample
+```
+$ cat .env
+ACCESS_TOKEN=***
+SPREADSHEET_ID=***
+COLUMN_RANGE=A1:B1
+```
+
+push config to heroku
+```
+heroku plugins:install heroku-config
+heroku config:push
+```
+
 
 ## Contributors
 
