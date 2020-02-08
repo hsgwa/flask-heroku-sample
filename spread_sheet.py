@@ -1,7 +1,6 @@
 from google.oauth2 import service_account
 import json
 import os
-import requests
 import googleapiclient.discovery
 from dotenv import load_dotenv
 load_dotenv(override=True)
