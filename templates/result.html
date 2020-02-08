@@ -10,11 +10,4 @@
   <p><strong>{{ user.name }}</strong>さんのお名前が見つかりませんでした</p>
   <img src="../static/imgs/ojigi_animal_kuma.png" />
   {% endif %}
-
-  <h2>登録されている人一覧</h2>
-  {% for u in users %}
-  <p>お名前：{{ u.name }} - 招待：{{ u.reserve_name }}</p>
-  {% else %}
-    <p>No users found in the db. You can make some above.</p>
-  {% endfor %}
 {% endblock %}

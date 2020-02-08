@@ -17,8 +17,6 @@ def index():
 @app.route('/result/<username>', methods=['GET'])
 def result(username):
     guests.update()
-
-    users = guests.get_guests()
     registered = guests.is_exist(username)
 
     if registered:
@@ -26,8 +24,7 @@ def result(username):
     else:
       user = Guest(username, '')
 
-    return render_template('result.html', users=users,
-                           registered=registered, user=user)
+    return render_template('result.html', registered=registered, user=user)
 
 
 @app.route('/user', methods=['POST'])
