@@ -1,54 +1,63 @@
-Flask Heroku Sample
+Joy-Tan Resevation Manage Application
 ====================
 
-A simple Python Flask example application that's ready to run on Heroku.
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+A reservation management application which uses google spread sheet as data base.
 
 ## Development Setup
+
+### Google Spread sheet setup
+
+* Create Google Cloud Platform Project
+
+* Setup Service Account and download certificate.json
+
+* Enable Google Sheets API
+
+* Create Spread sheet
+
+
+### Local environment setup
+* `heroku create`
 
 * `pipenv install`
 
 * `pipenv shell`
 
-* `python app.py`
 
-## Screenshot
 
-![screenshot](https://i.imgur.com/wf74fxY.png)
+## Setup environment variables
 
-## Deploy
+* Create environment variables to .env
 
-* `heroku create`
-
-* `heroku addons:create heroku-postgresql:hobby-dev`
-
-* `git push heroku master`
-
-* Note: make sure you run `db.create_all()` to create the tables: 
-```bash
-$ heroku run python
-Python 3.6.8 (default, Jan 29 2019, 19:35:16)
->>> from app import db
->>> db.create_all()
->>> exit()
-```
-## dot env
-sample
 ```
 $ cat .env
-ACCESS_TOKEN=***
-SPREADSHEET_ID=***
-COLUMN_RANGE=A1:B1
+TYPE="service_account"
+PROJECT_ID="****"
+PRIVATE_KEY_ID="****"
+PRIVATE_KEY="****"
+CLIENT_EMAIL="****"
+CLIENT_ID="****"
+AUTH_URI="https://accounts.google.com/o/oauth2/auth"
+TOKEN_URI="https://oauth2.googleapis.com/token"
+AUTH_PROVIDER_X509_CERT_URL="https://www.googleapis.com/oauth2/v1/certs"
+CLIENT_X509_CERT_URL="****"
+RANGE="B2:C1000"
+SPREADSHEET_ID="****"
 ```
+See certificate.json, spread sheet uri and spread sheet api.
 
-push config to heroku
+* push .env to heroku
+
 ```
 heroku plugins:install heroku-config
 heroku config:push
 ```
+## Deploy
 
+* `git push heroku master`
 
-## Contributors
+## Debug
 
-* [Yefim](https://twitter.com/yefim)
+* `pipenv install`
+
+* `python app.py`
