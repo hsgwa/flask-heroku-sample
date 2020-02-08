@@ -2,43 +2,21 @@ import os
 
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
+from spread_sheet import get_list
+from guest import Guest, Guests
 
 app = Flask(__name__)
-
-DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:////tmp/flask_app.db')
-
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
-db = SQLAlchemy(app)
-
-class User(db.Model):
-  id = db.Column(db.Integer, primary_key=True)
-  name = db.Column(db.String(100), unique=True)
-  reserve_name = db.Column(db.String(100))
-
-  def __init__(self, name, reserve_name):
-    self.name = name
-    self.reserve_name = reserve_name
-
+guests = Guests()
 
 @app.route('/', methods=['GET'])
 def index():
-  user = User.query.all()
   return render_template('index.html')
 
 @app.route('/result/<username>', methods=['GET'])
 def result(username):
-   user = User.query.filter(User.name == username).all()
-   print(user)
-   registered = len(user) > 0
+   guests.update()
 
-   if registered:
-     user = user[0]
-   else:
-    user = User(username, 'ジョイ')
-    db.session.add(user)
-    db.session.commit()
-
-   return render_template('result.html', users=User.query.all(), registered=registered, user=user)
+   return render_template('result.html', users=guests.get_guests(), registered=guests.is_exist(username), user=guests.get_guest(username))
 
 @app.route('/user', methods=['POST'])
 def user():
@@ -46,7 +24,5 @@ def user():
   return redirect(url_for('result', username=username))
 
 if __name__ == '__main__':
-  db.drop_all(bind=None)
-  db.create_all()
   port = int(os.environ.get('PORT', 5000))
   app.run(host='0.0.0.0', port=port, debug=True)
