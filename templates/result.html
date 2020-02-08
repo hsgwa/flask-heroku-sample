@@ -4,17 +4,20 @@
   {% if registered == true%}
 
   {% if user.reserve_name == "" %}
-  <p>おなまえ<strong>{{ user.name }}</strong>さん予約登録済みです</p>
+  <p>おなまえ <strong>{{ user.name }}</strong>さん のご予約が確認できました。</p>
     {% else %}
-    <p>おなまえ<strong>{{ user.name }}</strong>さん<br />
-        ご予約<strong>{{ user.reserve_name }}</strong>さんのご招待で予約登録済みです。</p>
+    <p>おなまえ <strong>{{ user.name }}</strong>さん<br /> 
+         <strong>{{ user.reserve_name }}</strong>さん の招待でご予約が確認できました。</p>
     {% endif %}
     <img src="../static/images/eto_saru_happy.png" width="60%" />
-    <p>それでは<br /><strong>[会場の場所]</strong><br />にてお待ちしております。</p>
+    <p>それでは<br />
+        <strong>６月１４日  日曜日</strong><br />
+        <strong>[会場の場所]</strong><br />
+        にてお待ちしております。</p>
   {% else %}
-  <p><strong>{{ user.name }}</strong>さんのご予約が確認出来ませんでした。</p>
+  <p><strong>{{ user.name }}</strong>さんのご予約が確認できませんでした。</p>
   <img src="../static/images/ojigi_animal_kuma.png" width="45%"/>
-  <p>数日間経っても確認が取れない場合、<br />
+  <p>数日経っても確認が取れない場合、<br />
       再度ご予約をお願いします。</p>
   {% endif %}
 {% endblock %}
