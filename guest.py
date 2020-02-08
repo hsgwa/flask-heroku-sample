@@ -14,14 +14,14 @@ class Guests():
     return self.__guests
 
   def get_guest(self, name):
-    for guest in guests.get_guests():
+    for guest in self.get_guests():
       if guest.name == name:
         return guest
     return
 
 
   def is_exist(self, name):
-    for guest in guests.get_guests():
+    for guest in self.get_guests():
       if guest.name == name:
         return True
     return False
