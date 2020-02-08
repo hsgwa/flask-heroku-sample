@@ -9,11 +9,11 @@
     <p>おなまえ<strong>{{ user.name }}</strong>さん<br />
         ご予約<strong>{{ user.reserve_name }}</strong>さんのご招待で予約登録済みです。</p>
     {% endif %}
-  <img src="../static/images/eto_saru_happy.png" />
+    <img src="../static/images/eto_saru_happy.png" width="60%" />
   <p>6月14日 <strong>[会場の場所]</strong> にてお待ちしております。</p>
   {% else %}
   <p><strong>{{ user.name }}</strong>さんのご予約が確認出来ませんでした。</p>
-  <img src="../static/images/ojigi_animal_kuma.png" />
+  <img src="../static/images/ojigi_animal_kuma.png" width="45%"/>
   <p>数日間確認が取れない場合は再度ご予約をおねがいします。</p>
   {% endif %}
 {% endblock %}
