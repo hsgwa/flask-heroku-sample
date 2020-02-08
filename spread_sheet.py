@@ -1,6 +1,6 @@
 import requests
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv(override=True)
 import os
 
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
