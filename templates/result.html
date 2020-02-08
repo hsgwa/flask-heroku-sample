@@ -4,8 +4,14 @@
   <h1>事前予約状況</h1>
   {% if registered == true%}
   <img src="../static/imgs/eto_saru_happy.png" />
+
+  {% if user.reserve_name == "" %}
+  <p>おなまえ<strong>{{ user.name }}</strong>さん予約登録済みです</p>
+  {% else %}
   <p>おなまえ<strong>{{ user.name }}</strong>さん<br />
       ご予約<strong>{{ user.reserve_name }}</strong>さんのご招待で予約登録済みです</p>
+  {% endif %}
+
   {% else %}
   <p><strong>{{ user.name }}</strong>さんのお名前が見つかりませんでした</p>
   <img src="../static/imgs/ojigi_animal_kuma.png" />
