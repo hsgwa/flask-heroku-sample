@@ -14,7 +14,12 @@ uri = api_uri + SPREADSHEET_ID + '/values/' + COLUMN_RANGE
 def get_list():
     response = requests.get(uri, headers=headers)
     data = response.json()
-    return data['values']
+    if response.status_code == 200:
+        return data['values']
+    else:
+        print('failed to get spread sheet data.')
+        print(response.text)
+        return
 
 if __name__ == '__main__':
     print(get_list())
