@@ -13,6 +13,13 @@ class Guests():
   def get_guests(self):
     return self.__guests
 
+  def get_guest(self, name):
+    for guest in guests.get_guests():
+      if guest.name == name:
+        return guest
+    return
+
+
   def is_exist(self, name):
     for guest in guests.get_guests():
       if guest.name == name:
@@ -43,6 +50,7 @@ if __name__ == '__main__':
   if confirm_name is not None:
       print('confirm guest name : {}'.format(confirm_name))
       if guests.is_exist(confirm_name):
-        print('exist.')
+        guest = guests.get_guest(confirm_name)
+        print('exist. name: {}, reserve_name: {}'.format(guest.name, guest.reserve_name))
       else:
         print('no exist.')
