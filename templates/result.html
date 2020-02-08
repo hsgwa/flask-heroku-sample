@@ -1,19 +1,19 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <h1>事前予約状況</h1>
   {% if registered == true%}
-  <img src="../static/imgs/eto_saru_happy.png" />
 
   {% if user.reserve_name == "" %}
   <p>おなまえ<strong>{{ user.name }}</strong>さん予約登録済みです</p>
+    {% else %}
+    <p>おなまえ<strong>{{ user.name }}</strong>さん<br />
+        ご予約<strong>{{ user.reserve_name }}</strong>さんのご招待で予約登録済みです。</p>
+    {% endif %}
+  <img src="../static/images/eto_saru_happy.png" />
+  <p>6月14日 <strong>[会場の場所]</strong> にてお待ちしております。</p>
   {% else %}
-  <p>おなまえ<strong>{{ user.name }}</strong>さん<br />
-      ご予約<strong>{{ user.reserve_name }}</strong>さんのご招待で予約登録済みです</p>
-  {% endif %}
-
-  {% else %}
-  <p><strong>{{ user.name }}</strong>さんのお名前が見つかりませんでした</p>
-  <img src="../static/imgs/ojigi_animal_kuma.png" />
+  <p><strong>{{ user.name }}</strong>さんのご予約が確認出来ませんでした。</p>
+  <img src="../static/images/ojigi_animal_kuma.png" />
+  <p>数日間確認が取れない場合は再度ご予約をおねがいします。</p>
   {% endif %}
 {% endblock %}

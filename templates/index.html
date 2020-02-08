@@ -1,9 +1,13 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <h1>Re:JOY-TAN&CON　事前予約確認</h1>
-  <form action="{{ url_for('user') }}" method="post">
-    <input id="name" type="text" name="name" placeholder="おなまえ　いれてね" required />
-    <button type="submit">確認</button>
-  </form>
+	<form class="grid-form" method="post" action="{{ url_for('user') }}">
+			<div class="form-control ">
+					<label for="name">おなまえ</label>
+					<input name="name" id="name" type="text" required />
+			</div>
+			<ul class="actions">
+					<li><input value="確認" type="submit"></li>
+			</ul>
+	</form>
 {% endblock %}
