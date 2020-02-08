@@ -20,7 +20,11 @@ def result(username):
 
     users = guests.get_guests()
     registered = guests.is_exist(username)
-    user = guests.get_guest(username)
+
+    if registered:
+      user = guests.get_guest(username)
+    else:
+      user = Guest(username, '')
 
     return render_template('result.html', users=users,
                            registered=registered, user=user)

@@ -7,9 +7,8 @@
   <p>おなまえ<strong>{{ user.name }}</strong>さん<br />
       ご予約<strong>{{ user.reserve_name }}</strong>さんのご招待で予約登録済みです</p>
   {% else %}
-  <p>登録されていませんでした</p>
+  <p><strong>{{ user.name }}</strong>さんのお名前が見つかりませんでした</p>
   <img src="../static/imgs/ojigi_animal_kuma.png" />
-  <p>お名前：{{ user.name }} - 招待：{{ user.reserve_name }}</p>
   {% endif %}
 
   <h2>登録されている人一覧</h2>
